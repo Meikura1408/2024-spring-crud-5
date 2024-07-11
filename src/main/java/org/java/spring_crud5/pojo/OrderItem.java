@@ -17,7 +17,7 @@ public class OrderItem {
     private Product product;
 
     @ManyToOne
-    private Order order;
+    private Ordine order;
 
     private int quantity;
 
@@ -68,7 +68,7 @@ public class OrderItem {
                 '}';
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(Ordine order) {
         this.order = order;
     }
 }

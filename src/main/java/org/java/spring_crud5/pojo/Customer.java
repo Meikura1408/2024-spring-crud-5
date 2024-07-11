@@ -30,7 +30,7 @@ public class Customer {
     private String phone;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-    private List<Order> orders;
+    private List<Ordine> orders;
 
     public Customer() {}
 
@@ -94,7 +94,7 @@ public class Customer {
                 '}';
     }
 
-    public List<Order> getOrders() {
+    public List<Ordine> getOrders() {
         return orders;
     }
 }

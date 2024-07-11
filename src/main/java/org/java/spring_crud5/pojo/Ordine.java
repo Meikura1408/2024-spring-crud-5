@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Order {
+public class Ordine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +24,9 @@ public class Order {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderItem> items;
 
-    public Order() {}
+    public Ordine() {}
 
-    public Order(Customer customer) {
+    public Ordine(Customer customer) {
         
         setCustomer(customer);
     }

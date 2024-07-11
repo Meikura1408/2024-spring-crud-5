@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.java.spring_crud5.pojo.Customer;
-import org.java.spring_crud5.pojo.Order;
+import org.java.spring_crud5.pojo.Ordine;
 import org.java.spring_crud5.pojo.OrderItem;
 import org.java.spring_crud5.pojo.Product;
 import org.java.spring_crud5.service.CustomerService;
@@ -34,21 +34,26 @@ public class SpringCrud5Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        System.out.println("Hello, World!");
+		System.out.println("Hello, World!");
 
-        //customerTest();
-        //productTest();
-        //orderTest();
-
-        System.out.println("The end");
+		try {
+			customerTest();
+			productTest();
+			orderTest();
+		} catch (Exception e) {
+			System.err.println("Errore durante l'esecuzione dell'applicazione");
+			e.printStackTrace();
+		}
+	
+		System.out.println("The end");
     }
 
     public void customerTest() {
 
         System.out.println("-----------------------------------------------------------");
 
-        Customer c1 = new Customer("John", "Doe", "john.doe@example.com", "1234567890");
-        Customer c2 = new Customer("Jane", "Doe", "jane.doe@example.com", "0987654321");
+        Customer c1 = new Customer("Gustavo", "Lafava", "gustavo.lafava@gmail.com", "1234567890");
+        Customer c2 = new Customer("Mariello", "PPrapapappo", "Mariello.Prapapappo@outlook.com", "0987654321");
 
         customerService.save(c1);
         customerService.save(c2);
@@ -60,7 +65,7 @@ public class SpringCrud5Application implements CommandLineRunner {
         Optional<Customer> optCustomerId1 = customerService.findById(1);
 
         if (optCustomerId1.isEmpty()) {
-            System.out.println("Customer not found");
+            System.out.println("Acquirente non trovato");
             return;
         }
 
@@ -76,8 +81,8 @@ public class SpringCrud5Application implements CommandLineRunner {
 
         System.out.println("-----------------------------------------------------------");
 
-        Product p1 = new Product("Product 1", 100, 22);
-        Product p2 = new Product("Product 2", 200, 22);
+        Product p1 = new Product("Pasta 1", 100, 22);
+        Product p2 = new Product("Pasta 2", 200, 22);
 
         productService.save(p1);
         productService.save(p2);
@@ -89,7 +94,7 @@ public class SpringCrud5Application implements CommandLineRunner {
         Optional<Product> optProductId1 = productService.findById(1);
 
         if (optProductId1.isEmpty()) {
-            System.out.println("Product not found");
+            System.out.println("Prodotto non trovato");
             return;
         }
 
@@ -105,15 +110,15 @@ public class SpringCrud5Application implements CommandLineRunner {
 
         System.out.println("-----------------------------------------------------------");
 
-        Customer customer = new Customer("Alice", "Wonderland", "alice@example.com", "1112223333");
+        Customer customer = new Customer("Alice", "Bice", "alice@gmail.com", "1112223333");
         customerService.save(customer);
 
-        Product product1 = new Product("Product 1", 100, 22);
-        Product product2 = new Product("Product 2", 200, 22);
+        Product product1 = new Product("Pizza 1", 100, 22);
+        Product product2 = new Product("Pizza 2", 200, 22);
         productService.save(product1);
         productService.save(product2);
 
-        Order order = new Order(customer);
+        Ordine order = new Ordine(customer);
         OrderItem orderItem1 = new OrderItem(product1, 2);
         OrderItem orderItem2 = new OrderItem(product2, 1);
         orderItem1.setOrder(order);
@@ -122,7 +127,7 @@ public class SpringCrud5Application implements CommandLineRunner {
         order.getItems().add(orderItem2);
         orderService.save(order);
 
-        List<Order> orders = orderService.findAllWithItems();
+        List<Ordine> orders = orderService.findAllWithItems();
         orders.forEach(o -> {
             System.out.println(o);
             o.getItems().forEach(System.out::println);
@@ -131,14 +136,14 @@ public class SpringCrud5Application implements CommandLineRunner {
 
         System.out.println("-----------------------------------------------------------");
 
-        Optional<Order> optOrderId1 = orderService.findByIdWithItems(1);
+        Optional<Ordine> optOrderId1 = orderService.findByIdWithItems(1);
 
         if (optOrderId1.isEmpty()) {
-            System.out.println("Order not found");
+            System.out.println("Ordine non trovato");
             return;
         }
 
-        Order orderId1 = optOrderId1.get();
+        Ordine orderId1 = optOrderId1.get();
         System.out.println(orderId1);
         orderId1.getItems().forEach(System.out::println);
 
