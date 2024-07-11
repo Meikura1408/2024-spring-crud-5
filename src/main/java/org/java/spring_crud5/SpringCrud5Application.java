@@ -43,7 +43,7 @@ public class SpringCrud5Application implements CommandLineRunner {
         System.out.println("The end");
     }
 
-   /*  public void customerTest() {
+    public void customerTest() {
 
         System.out.println("-----------------------------------------------------------");
 
@@ -143,7 +143,7 @@ public class SpringCrud5Application implements CommandLineRunner {
         orderId1.getItems().forEach(System.out::println);
 
         orderService.delete(orderId1);
-    } */
+    }
 	/**
 	 * REPO: 2024-spring-crud-5
 	 * 
